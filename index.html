@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>UIAnimationTool</title>
+  <link rel="stylesheet" href="./styles/reset.min.css">
+  <link rel='stylesheet' href='./styles/init.css'>
+  <link rel="stylesheet" href="./styles/style.css">
+  <script src="../adobelib/CSInterface.js"></script>
+	<script src="../adobelib/Vulcan.js"></script>
+</head>
+
+<body>
+
+  <div class="easings">
+  <div class="output">
+    <div id="graph_container" class="graph_container">
+      <div class="visualizer-wrapper grid">
+        <div id="axix_x" class="axis x"></div>
+        <div id="axix_y" class="axis y"></div>
+        <div class="visualizer">
+          <div class="ball" style="transform: translateY(100px) scale(0)"></div>
+          <svg viewBox="0 0 100 100">
+            <path class="curve"/>
+            <polyline class="graph_bezierline"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div id="input_container" class="input_container">
+    </div>
+      
+    <!-- <div class="value grid"></div> -->
+  </div>
+  <div class="options">
+
+
+    <label>Custom Preset</label>
+    <ul class="right_middle">
+    <li><button value="0.200, 0.000, 1.000, 1.000" name="easeInOutOppoMove" >curve_move_ease</button></li>
+    <li><button value="0.350, 0.620, 0.200, 1.000" name="easeInOppoMove" >curve_move_in</button></li>
+    <li><button value="0.000, 0.000, 0.050, 1.000" name="easeOutOppoMove" >curve_move_out</button></li>
+    <li><button value="0.000, 0.000, 0.330, 1.000" name="easeInOppoOpacity" >curve_opacity_in</button></li>
+    <li><button value="0.330, 0.000, 0.670, 1.000" name="easeInOutOppoOpacity" >curve_opacity_inout</button></li>
+    <li><button value="0.250, 0.100, 0.250, 1.000" name="easeInOutOppoCurve" >curve_ease</button></li>
+    <li><button value="0.000, 0.000, 0.580, 1.000" name="easeInOppoCurve" >curve_easein</button></li>
+    <li><button value="0.420, 0.000, 1.000, 1.000" name="easeOutOppoCurve" >curve_easeout</button></li>
+    </ul>
+
+    <label>Android Preset</label>
+    <ul class="right_middle">
+    <li><button id="android" name="androidLinearInterpolator" >Linear</button></li>
+    <li><button id="android" name="androidAccelerateInterpolator" >Accelerate</button></li>
+    <li><button id="android" name="androidDecelerateInterpolator" >Decelerate</button></li>
+    <li><button id="android" name="androidAccelerateDecelerateInterpolator" >AccelerateDecelerate</button></li>
+    <li><button id="android" name="androidAnticipateInterpolator" >Anticipate</button></li>
+    <li><button id="android" name="androidOvershootInterpolator" >Overshoot</button></li>
+    <li><button id="android" name="androidAnticipateOvershootInterpolator" >AnticipateOvershoot</button></li>
+    <li><button id="android" name="androidBounceInterpolator" >Bounce</button></li>
+    <li><button id="android" name="androidCycleInterpolator" >Cycle</button></li>
+    <li><button id="spring" name="androidSpringDynamic" >Spring</button></li>
+    <li><button id="fling" name="androidFlingDynamic" >Fling</button></li>
+    </ul>
+
+    <label>AnimeJS - Elastic</label>
+    <ul class="right_middle">
+    <li><button id="elastic" name="easeInElastic" >ElasticIn</button></li>
+    <li><button id="elastic" name="easeOutElastic" >ElasticOut</button></li>
+    <li><button id="elastic" name="easeInOutElastic" >ElasticInOut</button></li>
+    </ul>
+
+    <label>AnimeJS - Ease Library</label>
+    <ul class="right_middle">
+    <li><button value="0.550, 0.085, 0.680, 0.530" name="easeInQuad" >QuadIn</button></li>
+    <li><button value="0.550, 0.055, 0.675, 0.190" name="easeInCubic" >CubicIn</button></li>
+    <li><button value="0.895, 0.030, 0.685, 0.220" name="easeInQuart" >QuartIn</button></li>
+    <li><button value="0.755, 0.050, 0.855, 0.060" name="easeInQuint" >QuintIn</button></li>
+    <li><button value="0.470, 0.000, 0.745, 0.715" name="easeInSine" >SineIn</button></li>
+    <li><button value="0.950, 0.050, 0.795, 0.035" name="easeInExpo" >ExpoIn</button></li>
+    <li><button value="0.600, 0.040, 0.980, 0.335" name="easeInCirc" >CircIn</button></li>
+    <li><button value="0.600, -0.280, 0.735, 0.045" name="easeInBack" >BackIn</button></li>
+    <li><button value="0.250, 0.460, 0.450, 0.940" name="easeOutQuad" >QuadOut</button></li>
+    <li><button value="0.215, 0.610, 0.355, 1.000" name="easeOutCubic" >CubicOut</button></li>
+    <li><button value="0.165, 0.840, 0.440, 1.000" name="easeOutQuart" >QuartOut</button></li>
+    <li><button value="0.230, 1.000, 0.320, 1.000" name="easeOutQuint" >QuintOut</button></li>
+    <li><button value="0.390, 0.575, 0.565, 1.000" name="easeOutSine" >SineOut</button></li>
+    <li><button value="0.190, 1.000, 0.220, 1.000" name="easeOutExpo" >ExpoOut</button></li>
+    <li><button value="0.075, 0.820, 0.165, 1.000" name="easeOutCirc" >CircOut</button></li>
+    <li><button value="0.175, 0.885, 0.320, 1.275" name="easeOutBack" >BackOut</button></li>
+    <li><button value="0.455, 0.030, 0.515, 0.955" name="easeInOutQuad" >QuadInOut</button></li>
+    <li><button value="0.645, 0.045, 0.355, 1.000" name="easeInOutCubic" >CubicInOut</button></li>
+    <li><button value="0.770, 0.000, 0.175, 1.000" name="easeInOutQuart" >QuartInOut</button></li>
+    <li><button value="0.860, 0.000, 0.070, 1.000" name="easeInOutQuint" >QuintInOut</button></li>
+    <li><button value="0.445, 0.050, 0.550, 0.950" name="easeInOutSine" >SineInOut</button></li>
+    <li><button value="1.000, 0.000, 0.000, 1.000" name="easeInOutExpo" >ExpoInOut</button></li>
+    <li><button value="0.785, 0.135, 0.150, 0.860" name="easeInOutCirc" >CircInOut</button></li>
+    <li><button value="0.680, -0.550, 0.265, 1.550" name="easeInOutBack" >BackInOut</button></li>
+    </ul>
+  </div>
+</div>
+<script>
+  // for electron
+  window.Myrequire = window.require;
+  delete window.require;
+  delete window.exports;
+  delete window.module;
+</script>
+
+  <script src='./scripts/smoothpolyline.js'></script>
+  <script src='./scripts/anime.js'></script>
+  <script src="./scripts/index.js"></script>
+</body>
+</html>
